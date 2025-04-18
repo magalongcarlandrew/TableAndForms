@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice and Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .center-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .center-container > table,
+    .form-container {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 600px;
+      border: 5px solid #2e2e60;
+      margin-bottom: 40px;
+    }
+
+    td, th {
+      padding: 8px;
+      border: 1px solid #333;
+    }
+
+    .invoice-title {
+      background-color: #cce6f3;
+      text-align: center;
+      font-size: 18px;
+      padding: 10px;
+    }
+
+    .invoice-header {
+      background-color: #2e2e60;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .highlight-green {
+      background-color: #90EE90;
+    }
+
+    .highlight-yellow {
+      background-color: #F5F5DC;
+    }
+
+    .section-title {
+      background-color: #2e2e60;
+      color: white;
+      font-weight: bold;
+    }
+
+    .totals {
+      font-weight: bold;
+    }
+
+    .grand-total {
+      background-color: #2e2e60;
+      color: white;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .form-container {
+      width: 600px;
+      border: 2px solid #2e2e60;
+      padding: 20px;
+      background-color: white;
+      color: #00008b; /* Dark blue text for the form */
+    }
+
+    .form-header {
+      display: flex;
+      background-color: #cce6f3;
+      font-weight: bold;
+      margin: -20px;
+      margin-bottom: 20px;
+    }
+
+    .form-header div {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .form-row {
+      display: flex;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      align-items: flex-start;
+    }
+
+    .form-row label {
+      flex: 1;
+    }
+
+    .form-row input[type="text"],
+    .form-row select,
+    .form-row textarea {
+      flex: 2;
+      padding: 5px;
+      color: #00008b; /* Dark blue text in the inputs */
+    }
+
+    .form-row .radio-group,
+    .form-row .checkbox-group {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    /* Blue radio buttons */
+    .form-row input[type="radio"] {
+      accent-color: blue;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #cce6f3; /* Same light blue as the header */
+      color: black;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #b2daeb; /* Slightly darker blue when hovered */
+    }
+
+    .text-left { text-align: left; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+
+    /* Prevent resizing of the textarea */
+    .form-row textarea {
+      resize: none;
+    }
+
+    /* Slightly bigger text for specific sections */
+    .invoice-title, .invoice-header td, .highlight-green td, .highlight-yellow td,
+    .section-title td, .grand-total td {
+      font-size: 17px;
+    }
+
+    .totals {
+      font-weight: bold;
+    }
+
+    /* Bold Subtotal and Tax */
+    .subtotal, .tax {
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="center-container">
+
+    <!-- Invoice Table -->
+    <table>
+      <tr>
+        <td colspan="4" class="invoice-title">Invoice Tabular data</td>
+      </tr>
+      <tr class="invoice-header">
+        <td colspan="2">Invoice #<span style="color: white;">123456789</span></td>
+        <td colspan="2" class="text-right">14 January 2025</td>
+      </tr>
+      <tr class="highlight-green">
+        <td colspan="2">
+          <strong>Pay to:</strong><br>
+          Acme Billing Co.<br>
+          123 Main St.<br>
+          Cityville, NA 12345
+        </td>
+        <td colspan="2">
+          <strong>Customer:</strong><br>
+          John Smith<br>
+          321 Willow Way<br>
+          Southeast Northwestershire, MA 54321
+        </td>
+      </tr>
+      <tr class="section-title">
+        <td class="text-left">Name / Description</td>
+        <td class="text-center">Qty.</td>
+        <td class="text-center">@</td>
+        <td class="text-right">Cost</td>
+      </tr>
+      <tr class="highlight-yellow">
+        <td>Paperclips</td>
+        <td class="text-center">1000</td>
+        <td class="text-center">0.01</td>
+        <td class="text-right">10.00</td>
+      </tr>
+      <tr>
+        <td>Staples (box)</td>
+        <td class="text-center">100</td>
+        <td class="text-center">1.00</td>
+        <td class="text-right">100.00</td>
+      </tr>
+      <tr class="highlight-yellow">
+        <td>Bond Paper (box)</td>
+        <td class="text-center">100</td>
+        <td class="text-center">1.00</td>
+        <td class="text-right">110.00</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="subtotal">Subtotal</td>
+        <td class="text-right">110.00</td>
+      </tr>
+      <tr class="highlight-yellow">
+        <td colspan="2" class="tax">Tax</td>
+        <td class="text-center">8%</td>
+        <td class="text-right">$ 8.80</td>
+      </tr>
+      <tr class="grand-total">
+        <td colspan="3" class="text-left">Grand Total</td>
+        <td class="text-right">$ 118.80</td>
+      </tr>
+    </table>
+
+    <!-- Form -->
+    <div class="form-container">
+      <div class="form-header">
+        <div>Name</div>
+        <div>Value</div>
+      </div>
+
+      <div class="form-row">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Type your name here">
+      </div>
+
+      <div class="form-row">
+        <label>Sex:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="sex" id="male"> Male</label>
+          <label><input type="radio" name="sex" id="female"> Female</label>
+          <label><input type="radio" name="sex" id="other"> Other</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="eye">Eye Color</label>
+        <select id="eye">
+          <option value="black">black</option>
+          <option value="blue">blue</option>
+          <option value="green">green</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Check all the Applies</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox"> Over 6ft. Tall</label>
+          <label><input type="checkbox"> Over 200 pounds</label>
+          <label><input type="checkbox"> Less than 200 pounds</label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="athletic">Describe your athletic ability</label>
+        <textarea id="athletic" rows="4"></textarea>
+      </div>
+
+      <div class="form-row">
+        <button class="submit-btn">Enter my Information</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
